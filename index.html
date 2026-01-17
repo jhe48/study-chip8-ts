@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chip8-emu</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Chip-8 Emulator</h1>
+      <div id="rom-loader">
+        <input type="file" id="rom-file">
+        <button id="load-rom">Load ROM</button>
+      </div>
+      <div id="instructions">
+        <p>Keyboard Mapping:</p>
+        <p>1234 -> 123C</p>
+        <p>QWER -> 456D</p>
+        <p>ASDF -> 789E</p>
+        <p>ZXCV -> A0BF</p>
+      </div>
+      <canvas id="display" width="640" height="320"></canvas>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
