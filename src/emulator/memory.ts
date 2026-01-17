@@ -37,4 +37,10 @@ export class Memory {
   writeByte(address: number, value: number): void {
     this.memory[address] = value;
   }
+
+  loadRom(rom: Uint8Array) {
+    for (let i = 0; i < rom.length; i++) {
+      this.memory[0x200 + i] = rom[i];
+    }
+  }
 }
