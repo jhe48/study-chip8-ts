@@ -12,4 +12,13 @@ export class Keyboard {
   setKey(keyCode: number, isPressed: boolean): void {
     this.keys[keyCode] = isPressed;
   }
+
+  getKeyPressed(): number {
+    for (let i = 0; i < this.keys.length; i++) {
+      if (this.keys[i]) {
+        return i;
+      }
+    }
+    return -1;
+  }
 }

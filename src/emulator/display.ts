@@ -16,6 +16,9 @@ export class Display {
   clear() {
     this.context.fillStyle = 'black';
     this.context.fillRect(0, 0, this.width * this.scale, this.height * this.scale);
+    for (let i = 0; i < this.pixels.length; i++) {
+      this.pixels[i] = 0;
+    }
   }
 
   getPixel(x: number, y: number): number {

@@ -25,21 +25,44 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  justify-content: center;
+  align-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  background-color: #242424; /* Ensure background is dark */
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 100%; /* Changed from 1280px to be more responsive */
+  padding: 1rem; /* Adjusted padding */
   text-align: center;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  font-size: 2.5em; /* Adjusted font size */
+  line-height: 1.1;
+  color: #eeeeee; /* Light color for heading */
+  margin-bottom: 0.5em; /* Add space below heading */
+}
+
+#instructions {
+  color: #cccccc; /* Slightly lighter than main text */
+  margin-bottom: 1em; /* Add space below instructions */
+  font-size: 0.9em;
+}
+
+#instructions p {
+  margin: 0.2em 0;
+}
+
+canvas {
+  background-color: black;
+  border: 2px solid white;
+  display: block; /* Remove extra space below canvas */
+  margin: 0 auto; /* Center the canvas */
 }
 
 .logo {
