@@ -16,6 +16,8 @@ export class Emulator {
     ['z', 0xA], ['x', 0x0], ['c', 0xB], ['v', 0xF],
   ]);
 
+  private running: boolean;
+
   constructor(rom: Uint8Array) {
     this.memory = new Memory();
     this.display = new Display();
@@ -23,25 +25,43 @@ export class Emulator {
     this.cpu = new CPU(this.memory, this.keyboard, this.display);
 
     this.memory.loadRom(rom);
+    this.running = false;
 
-    window.addEventListener('keydown', (event) => {
-      const chip8Key = this.keyMap.get(event.key);
-      if (chip8Key !== undefined) {
-        this.keyboard.setKey(chip8Key, true);
-      }
-    });
+    this.start();
+  }
 
-    window.addEventListener('keyup', (event) => {
-      const chip8Key = this.keyMap.get(event.key);
-      if (chip8Key !== undefined) {
-        this.keyboard.setKey(chip8Key, false);
-      }
-    });
-
+  start() {
+    this.running = true;
+    window.addEventListener('keydown', this.onKeyDown);
+    window.addEventListener('keyup', this.onKeyUp);
     this.run();
   }
 
+  stop() {
+    this.running = false;
+    window.removeEventListener('keydown', this.onKeyDown);
+    window.removeEventListener('keyup', this.onKeyUp);
+  }
+
+  onKeyDown = (event: KeyboardEvent) => {
+    const chip8Key = this.keyMap.get(event.key);
+    if (chip8Key !== undefined) {
+      this.keyboard.setKey(chip8Key, true);
+    }
+  };
+
+  onKeyUp = (event: KeyboardEvent) => {
+    const chip8Key = this.keyMap.get(event.key);
+    if (chip8Key !== undefined) {
+      this.keyboard.setKey(chip8Key, false);
+    }
+  };
+
   run() {
+    if (!this.running) {
+      return;
+    }
+
     this.cpu.cycle();
     this.display.render();
     requestAnimationFrame(() => this.run());

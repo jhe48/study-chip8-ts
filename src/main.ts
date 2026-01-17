@@ -1,14 +1,26 @@
 import './style.css'
 import { Emulator } from './emulator';
 
+let emulator: Emulator | null = null;
 
-async function init() {
-  const response = await fetch('ibm-logo.ch8');
-  const romHex = await response.text();
-  const rom = new Uint8Array(romHex.match(/../g)!.map(h => parseInt(h, 16)));
+document.getElementById('load-rom')!.addEventListener('click', () => {
+  const romFileInput = document.getElementById('rom-file') as HTMLInputElement;
+  const file = romFileInput.files?.[0];
 
-  const emulator = new Emulator(rom);
-}
+  if (!file) {
+    alert('Please select a ROM file.');
+    return;
+  }
 
-document.addEventListener('DOMContentLoaded', init);
+  if (emulator) {
+    emulator.stop();
+  }
+
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const rom = new Uint8Array(event.target!.result as ArrayBuffer);
+    emulator = new Emulator(rom);
+  };
+  reader.readAsArrayBuffer(file);
+});
 
