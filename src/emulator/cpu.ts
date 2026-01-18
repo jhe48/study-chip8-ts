@@ -142,18 +142,24 @@ export class CPU {
             this.V[0xF] = (this.V[x] + this.V[y] > 255) ? 1 : 0;
             this.V[x] += this.V[y];
             break;
-          case 0x0005:
-            this.V[0xF] = (this.V[x] > this.V[y]) ? 1 : 0;
-            this.V[x] -= this.V[y];
+          case 0x0005: {
+            const vx = this.V[x];
+            const vy = this.V[y];
+            this.V[x] = vx - vy;
+            this.V[0xF] = (vx >= vy) ? 1 : 0;
             break;
+          }
           case 0x0006:
             this.V[0xF] = this.V[x] & 0x1;
             this.V[x] >>= 1;
             break;
-          case 0x0007:
-            this.V[0xF] = (this.V[y] > this.V[x]) ? 1 : 0;
-            this.V[x] = this.V[y] - this.V[x];
+          case 0x0007: {
+            const vx = this.V[x];
+            const vy = this.V[y];
+            this.V[x] = vy - vx;
+            this.V[0xF] = (vy >= vx) ? 1 : 0;
             break;
+          }
           case 0x000E:
             this.V[0xF] = (this.V[x] & 0x80) >> 7;
             this.V[x] <<= 1;
@@ -217,11 +223,13 @@ export class CPU {
           case 0x29:
             this.I = this.V[x] * 5; // Font sprites are 5 bytes high
             break;
-          case 0x33:
-            this.memory.writeByte(this.I, Math.floor(this.V[x] / 100));
-            this.memory.writeByte(this.I + 1, Math.floor((this.V[x] / 10) % 10));
-            this.memory.writeByte(this.I + 2, this.V[x] % 10);
+          case 0x33: {
+            const value = this.V[x];
+            this.memory.writeByte(this.I, Math.floor(value / 100));
+            this.memory.writeByte(this.I + 1, Math.floor(value / 10) % 10);
+            this.memory.writeByte(this.I + 2, value % 10);
             break;
+          }
           case 0x55:
             for (let i = 0; i <= x; i++) {
               this.memory.writeByte(this.I + i, this.V[i]);
