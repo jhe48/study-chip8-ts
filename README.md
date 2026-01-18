@@ -2,7 +2,8 @@
 
 This is a fully functional Chip-8 emulator built with TypeScript and rendered on an HTML5 canvas. It allows you to load and play classic Chip-8 games in your web browser. 
 
-<img width="885" height="822" alt="image" src="https://github.com/user-attachments/assets/7d1ef6f0-a78a-49c6-ac21-946fe1d2de63" />
+<img width="385" height="322" alt="image" src="https://github.com/user-attachments/assets/7d1ef6f0-a78a-49c6-ac21-946fe1d2de63" />
+<img width="385" height="322" alt="image" src="https://github.com/user-attachments/assets/637ea100-5e02-49d4-9e3c-3614b47deab0" />
 
 ## Features
 
