@@ -2,10 +2,12 @@
 
 This is a fully functional Chip-8 emulator built with TypeScript and rendered on an HTML5 canvas. It allows you to load and play classic Chip-8 games in your web browser. 
 
-<img width="385" height="322" alt="image" src="https://github.com/user-attachments/assets/7d1ef6f0-a78a-49c6-ac21-946fe1d2de63" />
-<img width="385" height="322" alt="image" src="https://github.com/user-attachments/assets/637ea100-5e02-49d4-9e3c-3614b47deab0" />
+<img width="325" height="518" alt="chip8v2rocket" src="https://github.com/user-attachments/assets/05b045ad-2454-465b-be45-c8d486415559" />
+<img width="325" height="518" alt="chip8v2pong" src="https://github.com/user-attachments/assets/0217c34a-e4c6-43c1-8cb5-d1e59be52487" />
+<img width="325" height="518" alt="chip8v2space" src="https://github.com/user-attachments/assets/0702b5f0-4a91-4fdf-a9a7-7cc766d46f32" />
 
 ## Features
+
 
 - Full Chip-8 opcode implementation
 - Dynamic ROM loading from a local file
