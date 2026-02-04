@@ -2,12 +2,16 @@ import { CPU } from './cpu';
 import { Display } from './display';
 import { Keyboard } from './keyboard';
 import { Memory } from './memory';
+import { Audio } from './audio';
+
+export type EmulatorState = 'stopped' | 'running' | 'paused';
 
 export class Emulator {
   cpu: CPU;
   display: Display;
   keyboard: Keyboard;
   memory: Memory;
+  audio: Audio;
 
   private keyMap: Map<string, number> = new Map([
     ['1', 0x1], ['2', 0x2], ['3', 0x3], ['4', 0xC],
@@ -17,12 +21,15 @@ export class Emulator {
   ]);
 
   private running: boolean;
+  private userPaused: boolean = false;
+  private cyclesPerFrame: number = 10;
 
   constructor(rom: Uint8Array) {
     this.memory = new Memory();
     this.display = new Display();
     this.keyboard = new Keyboard();
     this.cpu = new CPU(this.memory, this.keyboard, this.display);
+    this.audio = new Audio();
 
     this.memory.loadRom(rom);
     this.running = false;
@@ -39,8 +46,34 @@ export class Emulator {
 
   stop() {
     this.running = false;
+    this.audio.stop();
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('keyup', this.onKeyUp);
+  }
+
+  pause(): void {
+    this.userPaused = true;
+    this.cpu.pause();
+    this.audio.stop();
+  }
+
+  resume(): void {
+    this.userPaused = false;
+    this.cpu.resume();
+  }
+
+  getState(): EmulatorState {
+    if (!this.running) return 'stopped';
+    if (this.userPaused) return 'paused';
+    return 'running';
+  }
+
+  setCyclesPerFrame(cycles: number): void {
+    this.cyclesPerFrame = Math.max(1, Math.min(30, cycles));
+  }
+
+  getCyclesPerFrame(): number {
+    return this.cyclesPerFrame;
   }
 
   onKeyDown = (event: KeyboardEvent) => {
@@ -62,7 +95,19 @@ export class Emulator {
       return;
     }
 
-    this.cpu.cycle();
+    if (!this.userPaused) {
+      for (let i = 0; i < this.cyclesPerFrame; i++) {
+        this.cpu.cycle();
+      }
+      this.cpu.updateTimers();
+
+      if (this.cpu.getSoundTimer() > 0) {
+        this.audio.start();
+      } else {
+        this.audio.stop();
+      }
+    }
+
     this.display.render();
     requestAnimationFrame(() => this.run());
   }

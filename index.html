@@ -9,18 +9,39 @@
   <body>
     <div id="app">
       <h1>Chip-8 Emulator</h1>
+      <div id="status-badge" class="stopped">Stopped</div>
       <div id="rom-loader">
-        <input type="file" id="rom-file">
+        <input type="file" id="rom-file" accept=".ch8,.c8,.rom">
         <button id="load-rom">Load ROM</button>
       </div>
+      <div id="controls">
+        <div class="control-group">
+          <label for="theme-select">Theme:</label>
+          <select id="theme-select">
+            <option value="classic">Classic</option>
+            <option value="green">Green Phosphor</option>
+            <option value="amber">Amber</option>
+            <option value="blue">Blue</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="speed-slider">Speed:</label>
+          <input type="range" id="speed-slider" min="1" max="30" value="10">
+          <span id="speed-value">10</span>
+        </div>
+        <div class="control-group">
+          <button id="fullscreen-btn">Fullscreen</button>
+          <button id="mute-btn">Mute</button>
+        </div>
+      </div>
       <div id="instructions">
-        <p>Keyboard Mapping:</p>
-        <p>1234 -> 123C</p>
-        <p>QWER -> 456D</p>
-        <p>ASDF -> 789E</p>
-        <p>ZXCV -> A0BF</p>
+        <p>Keyboard: 1234/QWER/ASDF/ZXCV | Space: Pause/Resume</p>
       </div>
       <canvas id="display" width="640" height="320"></canvas>
+      <div id="rom-history">
+        <h3>Recent ROMs</h3>
+        <ul id="history-list"></ul>
+      </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>

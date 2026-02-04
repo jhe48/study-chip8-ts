@@ -1,3 +1,16 @@
+export interface ColorTheme {
+  background: string;
+  foreground: string;
+  name: string;
+}
+
+export const COLOR_THEMES: Record<string, ColorTheme> = {
+  classic: { background: '#000000', foreground: '#ffffff', name: 'Classic' },
+  green: { background: '#001100', foreground: '#33ff33', name: 'Green Phosphor' },
+  amber: { background: '#1a1000', foreground: '#ffb000', name: 'Amber' },
+  blue: { background: '#000011', foreground: '#33aaff', name: 'Blue' }
+};
+
 export class Display {
   private pixels: Uint8Array;
   private readonly width = 64;
@@ -5,6 +18,7 @@ export class Display {
   private readonly scale = 10;
   private canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D;
+  private theme: ColorTheme = COLOR_THEMES.classic;
 
   constructor() {
     this.pixels = new Uint8Array(this.width * this.height);
@@ -14,11 +28,26 @@ export class Display {
   }
 
   clear() {
-    this.context.fillStyle = 'black';
+    this.context.fillStyle = this.theme.background;
     this.context.fillRect(0, 0, this.width * this.scale, this.height * this.scale);
     for (let i = 0; i < this.pixels.length; i++) {
       this.pixels[i] = 0;
     }
+  }
+
+  setTheme(themeName: string): void {
+    const newTheme = COLOR_THEMES[themeName];
+    if (newTheme) {
+      this.theme = newTheme;
+      this.render();
+    }
+  }
+
+  getThemeName(): string {
+    for (const [name, theme] of Object.entries(COLOR_THEMES)) {
+      if (theme === this.theme) return name;
+    }
+    return 'classic';
   }
 
   getPixel(x: number, y: number): number {
@@ -51,10 +80,10 @@ export class Display {
   }
 
   render() {
-    this.context.fillStyle = 'black';
+    this.context.fillStyle = this.theme.background;
     this.context.fillRect(0, 0, this.width * this.scale, this.height * this.scale);
 
-    this.context.fillStyle = 'white';
+    this.context.fillStyle = this.theme.foreground;
     for (let i = 0; i < this.pixels.length; i++) {
       if (this.pixels[i] === 1) {
         const x = (i % this.width) * this.scale;
@@ -62,6 +91,10 @@ export class Display {
         this.context.fillRect(x, y, this.scale, this.scale);
       }
     }
+  }
+
+  getCanvas(): HTMLCanvasElement {
+    return this.canvas;
   }
 
 }

@@ -41,13 +41,13 @@ describe('Display', () => {
     const romData = new Uint8Array([0xF0]); // Example sprite data
     memory.loadRom(romData); // Load sprite data into memory
 
-    const initialVF = cpu.V[0xF];
-    display.draw(cpu.V, memory, 0x200, 0, 0, 1); // Draw sprite at (0,0) from address 0x200 (where ROM is loaded)
+    const V = (cpu as any).V;
+    display.draw(V, memory, 0x200, 0, 0, 1); // Draw sprite at (0,0) from address 0x200 (where ROM is loaded)
 
     // Check if pixel (0,0) is set
     expect(display.getPixel(0, 0)).toBe(1);
     // Check if VF is 0 (no collision)
-    expect(cpu.V[0xF]).toBe(0);
+    expect(V[0xF]).toBe(0);
   });
 
   it('should draw a sprite and set VF to 1 if collision occurs', () => {
@@ -58,11 +58,12 @@ describe('Display', () => {
     // Set pixel (0,0) before drawing to cause collision
     display.setPixel(0, 0, 1);
 
-    display.draw(cpu.V, memory, 0x200, 0, 0, 1);
+    const V = (cpu as any).V;
+    display.draw(V, memory, 0x200, 0, 0, 1);
 
     // Check if pixel (0,0) is XORed (should be 0 now)
     expect(display.getPixel(0, 0)).toBe(0);
     // Check if VF is 1 (collision)
-    expect(cpu.V[0xF]).toBe(1);
+    expect(V[0xF]).toBe(1);
   });
 });
