@@ -117,3 +117,121 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Status Badge */
+#status-badge {
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: 600;
+  margin-bottom: 1em;
+  text-transform: uppercase;
+}
+
+#status-badge.stopped {
+  background-color: #555;
+  color: #ccc;
+}
+
+#status-badge.running {
+  background-color: #2d7a2d;
+  color: #90ee90;
+}
+
+#status-badge.paused {
+  background-color: #7a7a2d;
+  color: #eeee90;
+}
+
+/* Controls */
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  margin: 1em 0;
+  padding: 0.8em;
+  background-color: #2a2a2a;
+  border-radius: 6px;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.control-group label {
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+#theme-select {
+  padding: 0.4em;
+  border-radius: 4px;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+#speed-slider {
+  width: 100px;
+}
+
+#speed-value {
+  min-width: 2em;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+/* Canvas */
+canvas.drag-over {
+  border-color: #646cff;
+  box-shadow: 0 0 15px rgba(100, 108, 255, 0.5);
+}
+
+canvas:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  border: none;
+}
+
+/* ROM History */
+#rom-history {
+  margin-top: 1.5em;
+  text-align: left;
+}
+
+#rom-history h3 {
+  font-size: 1em;
+  margin-bottom: 0.5em;
+  color: #aaa;
+}
+
+#history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#history-list li {
+  padding: 0.4em 0.6em;
+  margin: 0.2em 0;
+  background-color: #2a2a2a;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+}
+
+#history-list li:hover {
+  background-color: #3a3a3a;
+}
+
+#history-list:empty::after {
+  content: 'No recent ROMs';
+  color: #666;
+  font-style: italic;
+}

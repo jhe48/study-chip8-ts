@@ -67,14 +67,35 @@ export class CPU {
     this.pc += 2;
 
     this.executeOpcode(opcode);
+  }
 
+  updateTimers(): void {
     if (this.delayTimer > 0) {
       this.delayTimer--;
     }
-
     if (this.soundTimer > 0) {
       this.soundTimer--;
     }
+  }
+
+  getSoundTimer(): number {
+    return this.soundTimer;
+  }
+
+  getDelayTimer(): number {
+    return this.delayTimer;
+  }
+
+  isPaused(): boolean {
+    return this.paused;
+  }
+
+  pause(): void {
+    this.paused = true;
+  }
+
+  resume(): void {
+    this.paused = false;
   }
 
   private executeOpcode(opcode: number) {
