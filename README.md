@@ -5,9 +5,9 @@ This is a fully functional Chip-8 emulator built with TypeScript and rendered on
 <img width="325" height="518" alt="chip8v2rocket" src="https://github.com/user-attachments/assets/05b045ad-2454-465b-be45-c8d486415559" />
 <img width="325" height="518" alt="chip8v2pong" src="https://github.com/user-attachments/assets/0217c34a-e4c6-43c1-8cb5-d1e59be52487" />
 <img width="325" height="518" alt="chip8v2space" src="https://github.com/user-attachments/assets/0702b5f0-4a91-4fdf-a9a7-7cc766d46f32" />
+<img width="325" height="518" alt="chip8v2breakout" src="https://github.com/user-attachments/assets/eab11449-4429-4578-a1b3-9a5ce637e76a" />
 
 ## Features
-
 
 - Full Chip-8 opcode implementation
 - Dynamic ROM loading from a local file
