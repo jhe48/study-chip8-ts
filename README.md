@@ -38,7 +38,7 @@ This is a fully functional Chip-8 emulator built with TypeScript and rendered on
 
 ## Where to Find ROMs
 
-You can find a wide variety of public domain Chip-8 games and test ROMs at the [Chip-8 Archive](https://johnearnest.github.io/chip8Archive/). Download the ROM files (usually with a `.ch8` extension) and use the "Load ROM" button in the emulator to play them.
+You can find a wide variety of public domain Chip-8 games and test ROMs at the [Chip-8 Archive](https://johnearnest.github.io/chip8Archive/). Download the ROM files (usually with a `.ch8` extension), choose and select your ROM file, and use the "Load ROM" button in the emulator to play them.
 
 ## Controls
 
@@ -50,6 +50,7 @@ The emulator uses the following keyboard mapping to represent the original Chip-
 |  `Q` `W` `E` `R`  |  `4` `5` `6` `D`  |
 |  `A` `S` `D` `F`  |  `7` `8` `9` `E`  |
 |  `Z` `X` `C` `V`  |  `A` `0` `B` `F`  |
+> Note: Controls vary per game (e.g. Space Invaders only uses `Q`, `W`, and `E`.)
 
 ## Technologies Used
 
