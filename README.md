@@ -52,12 +52,6 @@ The emulator uses the following keyboard mapping to represent the original Chip-
 |  `Z` `X` `C` `V`  |  `A` `0` `B` `F`  |
 > Note: Controls vary per game (e.g. Space Invaders only uses `Q`, `W`, and `E`.)
 
-## Technologies Used
-
--   TypeScript
--   Vite
--   Vitest for unit testing
-
 ## Future Ideas
 
 While this project is focused on Chip-8, building a Game Boy emulator would be a great next challenge, involving a different and more complex architecture (a Z80-like CPU).
