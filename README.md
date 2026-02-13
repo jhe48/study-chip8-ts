@@ -54,4 +54,4 @@ The emulator uses the following keyboard mapping to represent the original Chip-
 
 ## Future Ideas
 
-While this project is focused on Chip-8, building a Game Boy emulator would be a great next challenge, involving a different and more complex architecture (a Z80-like CPU).
+While this project is focused on Chip-8, building a Game Boy Advance emulator would be a great next challenge, involving a different and more complex architecture (a Z80-like CPU).
