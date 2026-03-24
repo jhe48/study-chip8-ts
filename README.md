@@ -12,7 +12,6 @@ This is a fully functional Chip-8 emulator built with TypeScript and rendered on
 - Full Chip-8 opcode implementation
 - Dynamic ROM loading from a local file
 - Keyboard input handling
-- Sound and delay timers
 - Basic UI with instructions
 - Unit tests for core components
 
@@ -34,7 +33,7 @@ This is a fully functional Chip-8 emulator built with TypeScript and rendered on
     npm run dev
     ```
 
-4.  **Open your browser** and navigate to the URL provided by Vite (usually `http://localhost:5173/`).
+4.  **Open your browser** and navigate to the URL provided by Vite.
 
 ## Where to Find ROMs
 
