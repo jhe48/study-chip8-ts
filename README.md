@@ -50,7 +50,3 @@ The emulator uses the following keyboard mapping to represent the original Chip-
 |  `A` `S` `D` `F`  |  `7` `8` `9` `E`  |
 |  `Z` `X` `C` `V`  |  `A` `0` `B` `F`  |
 > Note: Controls vary per game (e.g. Space Invaders only uses `Q`, `W`, and `E`.)
-
-## Future Ideas
-
-While this project is focused on Chip-8, building a Game Boy Advance emulator would be a great next challenge, involving a different and more complex architecture (a Z80-like CPU).
